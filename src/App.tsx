@@ -11,10 +11,10 @@ function App() {
     <Grid container spacing={5}>
 
         {/* Indicadores */}
-        <Grid size={{ xs: 12, xl: 3 }}>IndicatorWeather</Grid>
-        <Grid size={{ xs: 12, xl: 3 }}>IndicatorWeather</Grid>
-        <Grid size={{ xs: 12, xl: 3 }}>IndicatorWeather</Grid>
-        <Grid size={{ xs: 12, xl: 3 }}>IndicatorWeather</Grid>
+        <Grid size={{ xs: 12, xl: 3 }}><IndicatorWeather /></Grid>
+        <Grid size={{ xs: 12, xl: 3 }}><IndicatorWeather /></Grid>
+        <Grid size={{ xs: 12, xl: 3 }}><IndicatorWeather /></Grid>
+        <Grid size={{ xs: 12, xl: 3 }}><IndicatorWeather /></Grid>
 
         {/* Tabla */}
         <Grid size={{ xs: 12, xl: 8 }}>Elemento: Tabla</Grid>
