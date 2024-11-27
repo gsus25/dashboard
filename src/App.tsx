@@ -22,7 +22,7 @@ function App() {
     let request = async () => { 
 
       {/* Request */}
-      let API_KEY = "OPENWEATHERMAP' API KEY"
+      let API_KEY = "3c7331b4775fca795c7568b401f3fca9"
       let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Guayaquil&mode=xml&appid=${API_KEY}`)
       let savedTextXML = await response.text();
 
