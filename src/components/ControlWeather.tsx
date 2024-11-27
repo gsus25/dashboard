@@ -6,8 +6,12 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-   
+{/* Interfaz SelectChangeEvent */}
+
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+
+
 export default function ControlWeather() {
 
     {/* Arreglo de objetos */}
@@ -19,7 +23,15 @@ export default function ControlWeather() {
 
     {/* Arreglo de elementos JSX */}
     let options = items.map( (item, key) => <MenuItem key={key} value={key}>{item["name"]}</MenuItem> )
-       
+    
+    {/* Manejador de eventos */}
+    const handleChange = (event: SelectChangeEvent) => {
+			
+        let idx = parseInt(event.target.value)
+        alert( idx );
+
+    };
+
     {/* JSX */}
     return (
         <Paper
@@ -43,6 +55,7 @@ export default function ControlWeather() {
                         id="simple-select"
                         label="Variables"
                         defaultValue='-1'
+                        onChange={handleChange}
                     >
                         <MenuItem key="-1" value="-1" disabled>Seleccione una variable</MenuItem>
 
