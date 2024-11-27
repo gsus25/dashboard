@@ -82,11 +82,11 @@ export default function ControlWeather() {
 
             </Box>
             {/* Use la variable de estado para renderizar del item seleccionado */}
-            {/*<Typography mt={2} component="p" color="text.secondary">
+            {/* <Typography mt={2} component="p" color="text.secondary">
              {
                  (selected >= 0)?items[selected]["description"]:""
              }
-             </Typography>//*/}
+             </Typography> */}
 
             <Typography ref={descriptionRef} mt={2} component="p" color="text.secondary" /> 
 
