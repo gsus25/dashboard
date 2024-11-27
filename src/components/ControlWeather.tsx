@@ -6,6 +6,10 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+
+{/* Hooks */ }
+import { useState } from 'react';
+
 {/* Interfaz SelectChangeEvent */}
 
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -13,6 +17,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 export default function ControlWeather() {
+
+    {/* Variable de estado y función de actualización */}
+    let [selected, setSelected] = useState(-1)
 
     {/* Arreglo de objetos */}
     let items = [
@@ -28,7 +35,8 @@ export default function ControlWeather() {
     const handleChange = (event: SelectChangeEvent) => {
 			
         let idx = parseInt(event.target.value)
-        alert( idx );
+        // alert( idx );
+        setSelected( idx );
 
     };
 
@@ -65,6 +73,12 @@ export default function ControlWeather() {
                 </FormControl>
 
             </Box>
+            {/* Use la variable de estado para renderizar del item seleccionado */}
+            <Typography mt={2} component="p" color="text.secondary">
+             {
+                 (selected >= 0)?items[selected]["description"]:""
+             }
+             </Typography>
 
 
         </Paper>
