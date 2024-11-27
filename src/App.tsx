@@ -89,7 +89,9 @@ function App() {
         <Grid size={{ xs: 12, md: 3 }}><IndicatorWeather title={'Indicator 2'} subtitle={'Unidad 2'} value={"3.12"}/></Grid>
         <Grid size={{ xs: 12, md: 3 }}><IndicatorWeather title={'Indicator 3'} subtitle={'Unidad 3'} value={"2.31"}/></Grid>
         <Grid size={{ xs: 12, md: 3 }}><IndicatorWeather title={'Indicator 4'} subtitle={'Unidad 4'} value={"3.21"}/></Grid> */}
-
+        
+        {renderIndicators()}
+        
         {/* Tabla */}
         <Grid size={{ xs: 12, md: 8 }}>
           {/* Grid Anidado */}
@@ -108,7 +110,7 @@ function App() {
           <LineChartWeather/>
         </Grid>
 
-        {renderIndicators()}
+        
        
     </Grid>
 )
