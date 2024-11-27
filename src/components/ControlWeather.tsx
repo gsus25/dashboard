@@ -7,8 +7,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
-{/* Hooks */ }
-import { useState } from 'react';
+
+import { useState, useRef } from 'react';
 
 {/* Interfaz SelectChangeEvent */}
 
@@ -20,6 +20,9 @@ export default function ControlWeather() {
 
     {/* Variable de estado y función de actualización */}
     let [selected, setSelected] = useState(-1)
+
+    {/* Constante de referencia a un elemento HTML */ }
+    const descriptionRef = useRef<HTMLDivElement>(null);
 
     {/* Arreglo de objetos */}
     let items = [
@@ -37,6 +40,11 @@ export default function ControlWeather() {
         let idx = parseInt(event.target.value)
         // alert( idx );
         setSelected( idx );
+
+        {/* Modificación de la referencia descriptionRef */}
+        if (descriptionRef.current !== null) {
+            descriptionRef.current.innerHTML = (idx >= 0) ? items[idx]["description"] : ""
+        }
 
     };
 
@@ -74,11 +82,13 @@ export default function ControlWeather() {
 
             </Box>
             {/* Use la variable de estado para renderizar del item seleccionado */}
-            <Typography mt={2} component="p" color="text.secondary">
+            {/*<Typography mt={2} component="p" color="text.secondary">
              {
                  (selected >= 0)?items[selected]["description"]:""
              }
-             </Typography>
+             </Typography>//*/}
+
+            <Typography ref={descriptionRef} mt={2} component="p" color="text.secondary" /> 
 
 
         </Paper>
