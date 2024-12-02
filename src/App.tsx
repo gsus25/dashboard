@@ -6,6 +6,9 @@ import IndicatorWeather from './components/IndicatorWeather';
 import TableWeather from './components/TableWeather';
 import ControlWeather from './components/ControlWeather';
 import LineChartWeather from './components/LineChartWeather';
+
+import Item from './interface/Item';
+
 {/* Hooks */ }
 import { useEffect, useState } from 'react';
 
@@ -16,6 +19,8 @@ interface Indicator {
 }
 
 function App() {
+
+  let [items, setItems] = useState<Item[]>([])
 
   {/* Variable de estado y función de actualización */}
   let [indicators, setIndicators] = useState<Indicator[]>([])
@@ -37,6 +42,8 @@ function App() {
 
       let dataToIndicators : Indicator[] = new Array<Indicator>();
 
+      let dataToItems: Item[] = [];
+
       {/* 
           Análisis, extracción y almacenamiento del contenido del XML 
           en el arreglo de resultados
@@ -57,8 +64,32 @@ function App() {
       dataToIndicators.push({ "title": "Location", "subtitle": "Altitude", "value": altitude })
 
       console.log( dataToIndicators )
+
+      const timeNodes = xml.getElementsByTagName("time");
+      for (let i = 0; i < Math.min(6, timeNodes.length); i++) {
+        const timeNode = timeNodes[i];
+
+        const from = timeNode.getAttribute("from") || "";
+        const to = timeNode.getAttribute("to") || "";
+
+        const precipitation = timeNode.querySelector("precipitation")?.getAttribute("probability") || "";
+        const humidity = timeNode.querySelector("humidity")?.getAttribute("value") || "";
+        const clouds = timeNode.querySelector("clouds")?.getAttribute("all") || "";
+
+        dataToItems.push({ 
+          dateStart: from, 
+          dateEnd: to, 
+          precipitation, 
+          humidity, 
+          clouds 
+        });
+      }
+
       {/* Modificación de la variable de estado mediante la función de actualización */}
       setIndicators( dataToIndicators )
+      setItems(dataToItems);
+
+
 
     }
 
@@ -91,7 +122,7 @@ function App() {
         <Grid size={{ xs: 12, md: 3 }}><IndicatorWeather title={'Indicator 4'} subtitle={'Unidad 4'} value={"3.21"}/></Grid> */}
         
         {renderIndicators()}
-        
+
         {/* Tabla */}
         <Grid size={{ xs: 12, md: 8 }}>
           {/* Grid Anidado */}
@@ -100,7 +131,7 @@ function App() {
               <ControlWeather/>
             </Grid>
             <Grid size={{ xs: 12, md: 9 }}>
-              <TableWeather/>
+              <TableWeather itemsIn={items}/>
             </Grid>
           </Grid>
         </Grid>
