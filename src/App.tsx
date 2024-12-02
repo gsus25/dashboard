@@ -65,6 +65,11 @@ function App() {
 
       console.log( dataToIndicators )
 
+      const formatTime = (dateString: string) => {
+        const date = new Date(dateString);
+        return date.toTimeString().split(' ')[0];
+      };
+
       const timeNodes = xml.getElementsByTagName("time");
       for (let i = 0; i < Math.min(6, timeNodes.length); i++) {
         const timeNode = timeNodes[i];
@@ -77,8 +82,8 @@ function App() {
         const clouds = timeNode.querySelector("clouds")?.getAttribute("all") || "";
 
         dataToItems.push({ 
-          dateStart: from, 
-          dateEnd: to, 
+          dateStart: formatTime(from), 
+          dateEnd: formatTime(to), 
           precipitation, 
           humidity, 
           clouds 
