@@ -6,8 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Item from '../interface/Item';
-import React, { useState, useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
 
 interface MyProp {
   itemsIn: Item[];
